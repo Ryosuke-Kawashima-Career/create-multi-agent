@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5078","created_at":"2026-01-01T08:15:00Z","author_role":"customer_admin","internal":false,"body":"MetroPulse reported application form missing on public job page during a recruiting workflow."}
+{"ticket_id":"TCK-5078","created_at":"2026-01-01T08:35:00Z","author_role":"support_engineer","internal":true,"body":"Check careers_site runbook. Cause candidate: Form embed version was pinned to an older template."}

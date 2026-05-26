@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5084","created_at":"2026-02-19T14:15:00Z","author_role":"customer_admin","internal":false,"body":"Summit Apparel reported required custom question hid submit button during a recruiting workflow."}
+{"ticket_id":"TCK-5084","created_at":"2026-02-19T14:35:00Z","author_role":"support_engineer","internal":true,"body":"Check careers_site runbook. Cause candidate: A required field had no public label."}

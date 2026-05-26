@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5161","created_at":"2026-01-16T13:15:00Z","author_role":"customer_admin","internal":false,"body":"VectorAI reported candidate import missing phone numbers during a recruiting workflow."}
+{"ticket_id":"TCK-5161","created_at":"2026-01-16T13:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Phone column used unsupported locale formatting."}

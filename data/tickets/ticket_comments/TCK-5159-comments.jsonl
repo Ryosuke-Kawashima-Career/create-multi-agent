@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5159","created_at":"2026-04-10T11:15:00Z","author_role":"customer_admin","internal":false,"body":"TerraGrid reported resume url column ignored during import during a recruiting workflow."}
+{"ticket_id":"TCK-5159","created_at":"2026-04-10T11:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Resume URL column was mapped as a note field."}

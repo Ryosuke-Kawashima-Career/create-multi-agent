@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5000","created_at":"2026-01-01T08:15:00Z","author_role":"customer_admin","internal":false,"body":"XenoFleet reported interview invitation email not delivered during a recruiting workflow."}
+{"ticket_id":"TCK-5000","created_at":"2026-01-01T08:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Recipient domain throttled transactional mail."}

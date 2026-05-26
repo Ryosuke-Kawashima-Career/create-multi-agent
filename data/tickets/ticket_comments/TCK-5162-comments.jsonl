@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5162","created_at":"2026-02-19T14:15:00Z","author_role":"customer_admin","internal":false,"body":"Willow Pharma reported duplicate rule merged distinct applicants during a recruiting workflow."}
+{"ticket_id":"TCK-5162","created_at":"2026-02-19T14:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Dedupe rule used name-only matching."}

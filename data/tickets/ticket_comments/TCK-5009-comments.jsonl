@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5009","created_at":"2026-05-01T17:15:00Z","author_role":"customer_admin","internal":false,"body":"HelioWorks reported candidate reminder email suppressed during a recruiting workflow."}
+{"ticket_id":"TCK-5009","created_at":"2026-05-01T17:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Template required a missing scheduling token."}

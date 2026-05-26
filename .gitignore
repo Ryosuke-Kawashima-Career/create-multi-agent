@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.env
+.env.runtime
+scripts/.state
+.adk/
+*.pyc
+*.egg-info/
+dist/
+build/
+.agent-engine-temp/
+.agent-runtime-temp/

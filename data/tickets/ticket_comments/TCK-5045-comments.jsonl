@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5045","created_at":"2026-02-19T14:15:00Z","author_role":"customer_admin","internal":false,"body":"BlueWave Health reported room calendar hidden from scheduler during a recruiting workflow."}
+{"ticket_id":"TCK-5045","created_at":"2026-02-19T14:35:00Z","author_role":"support_engineer","internal":true,"body":"Check calendar_integration runbook. Cause candidate: Working hours were set to the wrong time zone."}

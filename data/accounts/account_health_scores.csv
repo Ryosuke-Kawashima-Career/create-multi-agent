@@ -1,0 +1,26 @@
+customer_id,health_score,risk_signals,recent_support_theme,notes
+CUST-001,68,Interview scheduling volume spike,High candidate import volume,Synthetic account health signal for workshop use
+CUST-002,75,Careers site launch,Scorecard rollout,Synthetic account health signal for workshop use
+CUST-003,82,High candidate import volume,Candidate email deliverability complaints,Synthetic account health signal for workshop use
+CUST-004,89,Scorecard rollout,Interview scheduling volume spike,Synthetic account health signal for workshop use
+CUST-005,71,Candidate email deliverability complaints,Careers site launch,Synthetic account health signal for workshop use
+CUST-006,78,Interview scheduling volume spike,High candidate import volume,Synthetic account health signal for workshop use
+CUST-007,85,Careers site launch,Scorecard rollout,Synthetic account health signal for workshop use
+CUST-008,92,High candidate import volume,Candidate email deliverability complaints,Synthetic account health signal for workshop use
+CUST-009,74,Scorecard rollout,Interview scheduling volume spike,Synthetic account health signal for workshop use
+CUST-010,81,Candidate email deliverability complaints,Careers site launch,Synthetic account health signal for workshop use
+CUST-011,88,Interview scheduling volume spike,High candidate import volume,Synthetic account health signal for workshop use
+CUST-012,70,Careers site launch,Scorecard rollout,Synthetic account health signal for workshop use
+CUST-013,77,High candidate import volume,Candidate email deliverability complaints,Synthetic account health signal for workshop use
+CUST-014,84,Scorecard rollout,Interview scheduling volume spike,Synthetic account health signal for workshop use
+CUST-015,91,Candidate email deliverability complaints,Careers site launch,Synthetic account health signal for workshop use
+CUST-016,73,Interview scheduling volume spike,High candidate import volume,Synthetic account health signal for workshop use
+CUST-017,80,Careers site launch,Scorecard rollout,Synthetic account health signal for workshop use
+CUST-018,87,High candidate import volume,Candidate email deliverability complaints,Synthetic account health signal for workshop use
+CUST-019,69,Scorecard rollout,Interview scheduling volume spike,Synthetic account health signal for workshop use
+CUST-020,76,Candidate email deliverability complaints,Careers site launch,Synthetic account health signal for workshop use
+CUST-021,83,Interview scheduling volume spike,High candidate import volume,Synthetic account health signal for workshop use
+CUST-022,90,Careers site launch,Scorecard rollout,Synthetic account health signal for workshop use
+CUST-023,72,High candidate import volume,Candidate email deliverability complaints,Synthetic account health signal for workshop use
+CUST-024,79,Scorecard rollout,Interview scheduling volume spike,Synthetic account health signal for workshop use
+CUST-025,86,Candidate email deliverability complaints,Careers site launch,Synthetic account health signal for workshop use

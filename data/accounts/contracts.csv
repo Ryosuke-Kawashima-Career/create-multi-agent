@@ -1,0 +1,26 @@
+customer_id,plan,arr_usd,renewal_date,support_tier
+CUST-001,Enterprise Plus,420000,2026-11-30,Premier
+CUST-002,Enterprise Plus,510000,2027-01-31,Premier
+CUST-003,Business,96000,2026-09-15,Standard
+CUST-004,Enterprise,260000,2026-08-01,Premier
+CUST-005,Business,78000,2026-07-20,Standard
+CUST-006,Enterprise Plus,620000,2026-12-15,Premier
+CUST-007,Business,88000,2026-10-05,Standard
+CUST-008,Enterprise,310000,2027-02-28,Premier
+CUST-009,Enterprise Plus,455000,2026-09-01,Premier
+CUST-010,Business,72000,2026-06-30,Standard
+CUST-011,Business,65000,2026-05-31,Standard
+CUST-012,Enterprise,235000,2026-11-01,Premier
+CUST-013,Enterprise Plus,380000,2027-03-31,Premier
+CUST-014,Business,81000,2026-08-21,Standard
+CUST-015,Enterprise,295000,2027-01-15,Premier
+CUST-016,Business,99000,2026-09-30,Standard
+CUST-017,Enterprise,225000,2026-12-01,Premier
+CUST-018,Enterprise Plus,530000,2027-04-30,Premier
+CUST-019,Business,74000,2026-10-20,Standard
+CUST-020,Enterprise,340000,2027-02-01,Premier
+CUST-021,Business,69000,2026-07-14,Standard
+CUST-022,Enterprise Plus,470000,2027-05-15,Premier
+CUST-023,Enterprise,285000,2027-01-10,Premier
+CUST-024,Business,83000,2026-11-12,Standard
+CUST-025,Business,71000,2026-09-09,Standard

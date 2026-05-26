@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5121","created_at":"2026-05-13T12:15:00Z","author_role":"customer_admin","internal":false,"body":"Apex Robotics reported interviewer cannot open evaluation scorecard during a recruiting workflow."}
+{"ticket_id":"TCK-5121","created_at":"2026-05-13T12:35:00Z","author_role":"support_engineer","internal":true,"body":"Check scorecard_permissions runbook. Cause candidate: Interviewer was not added to the hiring team."}

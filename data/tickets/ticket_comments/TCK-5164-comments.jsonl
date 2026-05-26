@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5164","created_at":"2026-04-25T16:15:00Z","author_role":"customer_admin","internal":false,"body":"YieldWise reported csv import skipped candidate email values during a recruiting workflow."}
+{"ticket_id":"TCK-5164","created_at":"2026-04-25T16:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: CSV header did not match the saved mapping."}

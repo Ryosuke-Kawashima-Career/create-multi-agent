@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5041","created_at":"2026-03-07T10:15:00Z","author_role":"customer_admin","internal":false,"body":"Willow Pharma reported room calendar hidden from scheduler during a recruiting workflow."}
+{"ticket_id":"TCK-5041","created_at":"2026-03-07T10:35:00Z","author_role":"support_engineer","internal":true,"body":"Check calendar_integration runbook. Cause candidate: Working hours were set to the wrong time zone."}

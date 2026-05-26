@@ -1,0 +1,151 @@
+customer_id,feature,entitled,notes
+CUST-001,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-001,Candidate email automation,true,Transactional invitation mail
+CUST-001,Careers site custom domain,true,Hosted public job pages
+CUST-001,Advanced scorecards,true,Structured interviewer feedback
+CUST-001,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-001,Recruiting analytics,true,Pipeline and source dashboards
+CUST-002,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-002,Candidate email automation,true,Transactional invitation mail
+CUST-002,Careers site custom domain,true,Hosted public job pages
+CUST-002,Advanced scorecards,true,Structured interviewer feedback
+CUST-002,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-002,Recruiting analytics,true,Pipeline and source dashboards
+CUST-003,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-003,Candidate email automation,true,Transactional invitation mail
+CUST-003,Careers site custom domain,true,Hosted public job pages
+CUST-003,Advanced scorecards,true,Structured interviewer feedback
+CUST-003,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-003,Recruiting analytics,true,Pipeline and source dashboards
+CUST-004,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-004,Candidate email automation,true,Transactional invitation mail
+CUST-004,Careers site custom domain,true,Hosted public job pages
+CUST-004,Advanced scorecards,true,Structured interviewer feedback
+CUST-004,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-004,Recruiting analytics,true,Pipeline and source dashboards
+CUST-005,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-005,Candidate email automation,true,Transactional invitation mail
+CUST-005,Careers site custom domain,true,Hosted public job pages
+CUST-005,Advanced scorecards,true,Structured interviewer feedback
+CUST-005,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-005,Recruiting analytics,true,Pipeline and source dashboards
+CUST-006,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-006,Candidate email automation,true,Transactional invitation mail
+CUST-006,Careers site custom domain,true,Hosted public job pages
+CUST-006,Advanced scorecards,true,Structured interviewer feedback
+CUST-006,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-006,Recruiting analytics,true,Pipeline and source dashboards
+CUST-007,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-007,Candidate email automation,true,Transactional invitation mail
+CUST-007,Careers site custom domain,true,Hosted public job pages
+CUST-007,Advanced scorecards,true,Structured interviewer feedback
+CUST-007,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-007,Recruiting analytics,true,Pipeline and source dashboards
+CUST-008,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-008,Candidate email automation,true,Transactional invitation mail
+CUST-008,Careers site custom domain,true,Hosted public job pages
+CUST-008,Advanced scorecards,true,Structured interviewer feedback
+CUST-008,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-008,Recruiting analytics,true,Pipeline and source dashboards
+CUST-009,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-009,Candidate email automation,true,Transactional invitation mail
+CUST-009,Careers site custom domain,true,Hosted public job pages
+CUST-009,Advanced scorecards,true,Structured interviewer feedback
+CUST-009,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-009,Recruiting analytics,true,Pipeline and source dashboards
+CUST-010,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-010,Candidate email automation,true,Transactional invitation mail
+CUST-010,Careers site custom domain,true,Hosted public job pages
+CUST-010,Advanced scorecards,true,Structured interviewer feedback
+CUST-010,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-010,Recruiting analytics,true,Pipeline and source dashboards
+CUST-011,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-011,Candidate email automation,true,Transactional invitation mail
+CUST-011,Careers site custom domain,true,Hosted public job pages
+CUST-011,Advanced scorecards,true,Structured interviewer feedback
+CUST-011,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-011,Recruiting analytics,true,Pipeline and source dashboards
+CUST-012,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-012,Candidate email automation,true,Transactional invitation mail
+CUST-012,Careers site custom domain,true,Hosted public job pages
+CUST-012,Advanced scorecards,true,Structured interviewer feedback
+CUST-012,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-012,Recruiting analytics,true,Pipeline and source dashboards
+CUST-013,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-013,Candidate email automation,true,Transactional invitation mail
+CUST-013,Careers site custom domain,true,Hosted public job pages
+CUST-013,Advanced scorecards,true,Structured interviewer feedback
+CUST-013,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-013,Recruiting analytics,true,Pipeline and source dashboards
+CUST-014,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-014,Candidate email automation,true,Transactional invitation mail
+CUST-014,Careers site custom domain,true,Hosted public job pages
+CUST-014,Advanced scorecards,true,Structured interviewer feedback
+CUST-014,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-014,Recruiting analytics,true,Pipeline and source dashboards
+CUST-015,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-015,Candidate email automation,true,Transactional invitation mail
+CUST-015,Careers site custom domain,true,Hosted public job pages
+CUST-015,Advanced scorecards,true,Structured interviewer feedback
+CUST-015,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-015,Recruiting analytics,true,Pipeline and source dashboards
+CUST-016,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-016,Candidate email automation,true,Transactional invitation mail
+CUST-016,Careers site custom domain,true,Hosted public job pages
+CUST-016,Advanced scorecards,true,Structured interviewer feedback
+CUST-016,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-016,Recruiting analytics,true,Pipeline and source dashboards
+CUST-017,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-017,Candidate email automation,true,Transactional invitation mail
+CUST-017,Careers site custom domain,true,Hosted public job pages
+CUST-017,Advanced scorecards,true,Structured interviewer feedback
+CUST-017,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-017,Recruiting analytics,true,Pipeline and source dashboards
+CUST-018,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-018,Candidate email automation,true,Transactional invitation mail
+CUST-018,Careers site custom domain,true,Hosted public job pages
+CUST-018,Advanced scorecards,true,Structured interviewer feedback
+CUST-018,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-018,Recruiting analytics,true,Pipeline and source dashboards
+CUST-019,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-019,Candidate email automation,true,Transactional invitation mail
+CUST-019,Careers site custom domain,true,Hosted public job pages
+CUST-019,Advanced scorecards,true,Structured interviewer feedback
+CUST-019,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-019,Recruiting analytics,true,Pipeline and source dashboards
+CUST-020,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-020,Candidate email automation,true,Transactional invitation mail
+CUST-020,Careers site custom domain,true,Hosted public job pages
+CUST-020,Advanced scorecards,true,Structured interviewer feedback
+CUST-020,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-020,Recruiting analytics,true,Pipeline and source dashboards
+CUST-021,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-021,Candidate email automation,true,Transactional invitation mail
+CUST-021,Careers site custom domain,true,Hosted public job pages
+CUST-021,Advanced scorecards,true,Structured interviewer feedback
+CUST-021,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-021,Recruiting analytics,true,Pipeline and source dashboards
+CUST-022,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-022,Candidate email automation,true,Transactional invitation mail
+CUST-022,Careers site custom domain,true,Hosted public job pages
+CUST-022,Advanced scorecards,true,Structured interviewer feedback
+CUST-022,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-022,Recruiting analytics,true,Pipeline and source dashboards
+CUST-023,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-023,Candidate email automation,true,Transactional invitation mail
+CUST-023,Careers site custom domain,true,Hosted public job pages
+CUST-023,Advanced scorecards,true,Structured interviewer feedback
+CUST-023,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-023,Recruiting analytics,true,Pipeline and source dashboards
+CUST-024,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-024,Candidate email automation,true,Transactional invitation mail
+CUST-024,Careers site custom domain,true,Hosted public job pages
+CUST-024,Advanced scorecards,true,Structured interviewer feedback
+CUST-024,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-024,Recruiting analytics,true,Pipeline and source dashboards
+CUST-025,Google Calendar sync,true,Free/busy and interview scheduling
+CUST-025,Candidate email automation,true,Transactional invitation mail
+CUST-025,Careers site custom domain,true,Hosted public job pages
+CUST-025,Advanced scorecards,true,Structured interviewer feedback
+CUST-025,Bulk CSV candidate import,true,Import preview and dedupe rules
+CUST-025,Recruiting analytics,true,Pipeline and source dashboards

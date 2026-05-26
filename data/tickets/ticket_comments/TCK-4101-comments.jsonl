@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-4101","created_at":"2026-05-20T10:20:00Z","author_role":"customer_admin","internal":false,"body":"Apex Robotics reported that interview invitations for a manufacturing hiring event were sent but candidates did not receive them."}
+{"ticket_id":"TCK-4101","created_at":"2026-05-20T10:42:00Z","author_role":"support_engineer","internal":true,"body":"SEV2 case. Attach tenant_id, job IDs, sanitized examples, and owner-team notes only internally."}

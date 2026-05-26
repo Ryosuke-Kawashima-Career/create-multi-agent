@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5087","created_at":"2026-05-01T17:15:00Z","author_role":"customer_admin","internal":false,"body":"VectorAI reported careers site custom domain cache served old page during a recruiting workflow."}
+{"ticket_id":"TCK-5087","created_at":"2026-05-01T17:35:00Z","author_role":"support_engineer","internal":true,"body":"Check careers_site runbook. Cause candidate: CDN cache kept a retired page layout."}

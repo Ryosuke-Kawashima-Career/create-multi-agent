@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-4422","created_at":"2026-05-23T11:30:00Z","author_role":"customer_admin","internal":false,"body":"DeltaHire interviewers received scorecard tasks but the evaluation form opened in read-only mode."}
+{"ticket_id":"TCK-4422","created_at":"2026-05-23T11:55:00Z","author_role":"support_engineer","internal":true,"body":"SEV3 case. Attach tenant_id, job IDs, sanitized examples, and owner-team notes only internally."}

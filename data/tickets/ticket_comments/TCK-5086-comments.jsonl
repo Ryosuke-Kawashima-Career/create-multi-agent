@@ -1,0 +1,2 @@
+{"ticket_id":"TCK-5086","created_at":"2026-04-25T16:15:00Z","author_role":"customer_admin","internal":false,"body":"UrbanLoop reported application form missing on public job page during a recruiting workflow."}
+{"ticket_id":"TCK-5086","created_at":"2026-04-25T16:35:00Z","author_role":"support_engineer","internal":true,"body":"Check careers_site runbook. Cause candidate: Form embed version was pinned to an older template."}
