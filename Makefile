@@ -13,17 +13,15 @@ lint:
 	$(UV_RUN) --extra dev ruff check .
 
 run:
-	@set -e; \
-	trap 'for job in $$(jobs -p); do kill "$$job" 2>/dev/null || true; done' INT TERM EXIT; \
+	@trap 'trap - INT TERM; pids=$$(jobs -p); [ -n "$$pids" ] && kill $$pids 2>/dev/null; wait 2>/dev/null; exit 0' INT TERM; \
+	$(MAKE) --no-print-directory web & web_pid=$$!; \
 	$(MAKE) --no-print-directory run-specialists & \
 	$(MAKE) --no-print-directory run-coordinator & \
-	$(MAKE) --no-print-directory web & \
 	echo "Specialists, coordinator, and ADK Web are starting."; \
-	wait
+	wait $$web_pid
 
 run-specialists:
-	@set -e; \
-	trap 'kill 0' INT TERM EXIT; \
+	@trap 'trap - INT TERM; pids=$$(jobs -p); [ -n "$$pids" ] && kill $$pids 2>/dev/null; wait 2>/dev/null; exit 0' INT TERM; \
 	PYTHONPATH=. $(UV_RUN) uvicorn agents.comfort.agent:app --host 0.0.0.0 --port 8101 & \
 	PYTHONPATH=. $(UV_RUN) uvicorn agents.risk.agent:app --host 0.0.0.0 --port 8102 & \
 	PYTHONPATH=. $(UV_RUN) uvicorn agents.experience.agent:app --host 0.0.0.0 --port 8103 & \
