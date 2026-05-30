@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5043","created_at":"2026-05-13T12:15:00Z","author_role":"customer_admin","internal":false,"body":"YieldWise reported google calendar availability not visible during a recruiting workflow."}
-{"ticket_id":"TCK-5043","created_at":"2026-05-13T12:35:00Z","author_role":"support_engineer","internal":true,"body":"Check calendar_integration runbook. Cause candidate: Google OAuth token lacked freebusy scope."}

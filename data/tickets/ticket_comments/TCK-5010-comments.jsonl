@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5010","created_at":"2026-01-04T08:15:00Z","author_role":"customer_admin","internal":false,"body":"IvyCloud reported offer interview invite stuck in pending during a recruiting workflow."}
-{"ticket_id":"TCK-5010","created_at":"2026-01-04T08:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Candidate address was on a suppression list."}

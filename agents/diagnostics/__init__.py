@@ -1,1 +1,0 @@
-"""Diagnostics specialist agent package."""

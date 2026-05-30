@@ -1,9 +1,0 @@
-support_tier,severity,first_response,update_frequency,escalation_path
-Premier,SEV1,15 minutes,30 minutes,Engineering incident commander
-Premier,SEV2,30 minutes,60 minutes,Product owner team
-Premier,SEV3,4 business hours,1 business day,Support engineering
-Premier,SEV4,1 business day,2 business days,Support queue
-Standard,SEV1,1 hour,2 hours,Engineering incident commander
-Standard,SEV2,4 business hours,1 business day,Product owner team
-Standard,SEV3,1 business day,2 business days,Support engineering
-Standard,SEV4,2 business days,3 business days,Support queue

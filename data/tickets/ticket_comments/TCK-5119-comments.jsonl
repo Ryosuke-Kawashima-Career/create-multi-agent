@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5119","created_at":"2026-03-07T10:15:00Z","author_role":"customer_admin","internal":false,"body":"XenoFleet reported hiring manager feedback form read-only during a recruiting workflow."}
-{"ticket_id":"TCK-5119","created_at":"2026-03-07T10:35:00Z","author_role":"support_engineer","internal":true,"body":"Check scorecard_permissions runbook. Cause candidate: Feedback form was locked after stage transition."}

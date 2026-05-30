@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5165","created_at":"2026-05-01T17:15:00Z","author_role":"customer_admin","internal":false,"body":"Apex Robotics reported candidate import missing phone numbers during a recruiting workflow."}
-{"ticket_id":"TCK-5165","created_at":"2026-05-01T17:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Phone column used unsupported locale formatting."}

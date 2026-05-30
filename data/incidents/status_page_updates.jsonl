@@ -1,4 +1,0 @@
-{"incident_id":"INC-2026-0524-INVITE-DELIVERY","published_at":"2026-05-24T01:05:00Z","message":"We are investigating delayed interview invitation email delivery for some high-volume candidate batches."}
-{"incident_id":"INC-2026-0524-INVITE-DELIVERY","published_at":"2026-05-24T02:20:00Z","message":"Invitation delivery is improving. We continue monitoring queued candidate emails."}
-{"incident_id":"INC-2026-0525-CALENDAR-FREEBUSY","published_at":"2026-05-25T01:45:00Z","message":"We are investigating incomplete Google Calendar availability results for some customers."}
-{"incident_id":"INC-2026-0523-CAREERS-FORM","published_at":"2026-05-23T15:30:00Z","message":"The application form rendering issue is resolved for affected public job pages."}

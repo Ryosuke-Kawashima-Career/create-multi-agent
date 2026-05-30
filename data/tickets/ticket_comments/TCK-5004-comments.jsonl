@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5004","created_at":"2026-05-13T12:15:00Z","author_role":"customer_admin","internal":false,"body":"ClearPath Logistics reported interview invitation email not delivered during a recruiting workflow."}
-{"ticket_id":"TCK-5004","created_at":"2026-05-13T12:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Recipient domain throttled transactional mail."}

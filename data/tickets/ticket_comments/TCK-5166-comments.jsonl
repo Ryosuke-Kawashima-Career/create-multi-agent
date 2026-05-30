@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5166","created_at":"2026-01-04T08:15:00Z","author_role":"customer_admin","internal":false,"body":"BlueWave Health reported duplicate rule merged distinct applicants during a recruiting workflow."}
-{"ticket_id":"TCK-5166","created_at":"2026-01-04T08:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Dedupe rule used name-only matching."}

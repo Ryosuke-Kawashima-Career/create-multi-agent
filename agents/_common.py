@@ -1,67 +1,51 @@
+"""Shared helpers for ADK agent packages under ``agents/``.
+
+Handles repo-root path injection, ``.env`` loading, A2A endpoint URL
+normalization, ADC-based httpx authentication for Vertex AI Reasoning Engine
+runtime, and converting an ADK agent into an A2A ASGI app.
+"""
+
 from __future__ import annotations
 
 import os
 import sys
 import time
-import warnings
 from pathlib import Path
 
 import httpx
 from dotenv import load_dotenv
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SRC_DIR = REPO_ROOT / "src"
-_CLOUD_TRACE_ENABLED = False
 
 
-def ensure_src_path() -> None:
-    src = str(SRC_DIR)
-    if src not in sys.path:
-        sys.path.insert(0, src)
+def ensure_repo_path() -> None:
+    """Insert the repository root into ``sys.path`` so ``agents.*`` imports resolve.
+
+    Required because agent entrypoints are launched as scripts (e.g. via
+    ``uvicorn``) where the repo root is not on the path by default.
+    """
+    repo = str(REPO_ROOT)
+    if repo not in sys.path:
+        sys.path.insert(0, repo)
 
 
-ensure_src_path()
+ensure_repo_path()
 load_dotenv(REPO_ROOT / ".env")
 
 
 def env_bool(name: str) -> bool:
+    """Return ``True`` when env var ``name`` is set to a truthy value."""
     return os.getenv(name, "").lower() in {"1", "true", "yes", "on"}
 
 
-def maybe_enable_cloud_trace() -> None:
-    global _CLOUD_TRACE_ENABLED
-    if _CLOUD_TRACE_ENABLED or not env_bool("HIRENEST_TRACE_TO_CLOUD"):
-        return
+def remote_agent_card_url(env_name: str, default_base_url: str) -> str:
+    """Resolve the Agent Card URL for a remote A2A agent.
 
-    try:
-        import google.auth
-        from google.adk.telemetry.google_cloud import get_gcp_exporters, get_gcp_resource
-        from google.adk.telemetry.setup import maybe_set_otel_providers
-
-        credentials, project_id = google.auth.default()
-        hooks = get_gcp_exporters(
-            enable_cloud_tracing=True,
-            google_auth=(credentials, project_id),
-        )
-        maybe_set_otel_providers(
-            otel_hooks_to_setup=[hooks],
-            otel_resource=get_gcp_resource(project_id),
-        )
-    except Exception as exc:  # pragma: no cover - depends on local/cloud auth state.
-        warnings.warn(f"Cloud Trace setup skipped: {exc}", stacklevel=2)
-        return
-
-    _CLOUD_TRACE_ENABLED = True
-
-
-maybe_enable_cloud_trace()
-
-
-def model_name() -> str:
-    return os.getenv("ADK_MODEL", "gemini-2.5-flash")
-
-
-def specialist_card_url(env_name: str, default_base_url: str) -> str:
+    Reads ``env_name`` (falling back to ``default_base_url``) and normalizes the
+    result so callers can pass either a service base URL, a Reasoning Engine
+    ``/a2a`` URL, or an already-qualified card endpoint and still receive a URL
+    that points at the Agent Card document.
+    """
     base_url = os.getenv(env_name, default_base_url).rstrip("/")
     if base_url.endswith("/v1/card"):
         return base_url
@@ -73,6 +57,13 @@ def specialist_card_url(env_name: str, default_base_url: str) -> str:
 
 
 class GoogleCloudAuth(httpx.Auth):
+    """httpx Auth that attaches a Google Cloud ADC bearer token to each request.
+
+    The credential is loaded once via ``google.auth.default`` with the
+    ``cloud-platform`` scope and refreshed lazily when the cached access token
+    is missing, invalid, or within 60 seconds of expiry.
+    """
+
     def __init__(self) -> None:
         import google.auth
         from google.auth.transport.requests import Request
@@ -84,6 +75,7 @@ class GoogleCloudAuth(httpx.Auth):
         self._expires_at = 0.0
 
     def auth_flow(self, request: httpx.Request):
+        """Refresh the ADC token if needed and set the ``Authorization`` header."""
         if not self.credentials.valid or time.time() >= self._expires_at - 60:
             self.credentials.refresh(self._request)
             expiry = getattr(self.credentials, "expiry", None)
@@ -93,12 +85,26 @@ class GoogleCloudAuth(httpx.Auth):
 
 
 def runtime_a2a_httpx_client() -> httpx.AsyncClient | None:
-    if not env_bool("HIRENEST_A2A_USE_ADC_AUTH"):
+    """Build an httpx client with ADC auth, or ``None`` if ADC auth is disabled.
+
+    Used when the coordinator talks to specialists deployed to Vertex AI
+    Reasoning Engine, which require a Google Cloud bearer token. Local
+    specialists started via ``make run-specialists`` do not, so the helper
+    returns ``None`` unless ``TRAVEL_AGENT_A2A_USE_ADC_AUTH`` is truthy.
+    """
+    if not env_bool("TRAVEL_AGENT_A2A_USE_ADC_AUTH"):
         return None
     return httpx.AsyncClient(auth=GoogleCloudAuth(), timeout=httpx.Timeout(timeout=60.0))
 
 
-def build_a2a_app(agent, default_port: int):
+def to_a2a_app(agent, default_port: int):
+    """Wrap an ADK ``agent`` as an A2A ASGI application.
+
+    Host/protocol/port are read from ``A2A_HOST`` / ``A2A_PROTOCOL`` / ``PORT``
+    with ``default_port`` as a fallback. A custom Agent Card is built for leaf
+    agents (those without ``sub_agents``); workflow agents inherit the default
+    card generated by ``google.adk.a2a.utils.agent_to_a2a.to_a2a``.
+    """
     from a2a.types import AgentCapabilities, AgentCard, AgentSkill, TransportProtocol
     from google.adk.a2a.utils.agent_to_a2a import to_a2a
 
@@ -120,7 +126,7 @@ def build_a2a_app(agent, default_port: int):
                 AgentSkill(
                     id=f"{agent.name}_skill",
                     name=agent.name,
-                    description=agent.description or "Runs the support workflow.",
+                    description=agent.description or "Runs the travel planning workflow.",
                     tags=["adk", "workflow", "a2a"],
                 )
             ],

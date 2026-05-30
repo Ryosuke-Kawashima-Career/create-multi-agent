@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5158","created_at":"2026-03-07T10:15:00Z","author_role":"customer_admin","internal":false,"body":"Summit Apparel reported duplicate rule merged distinct applicants during a recruiting workflow."}
-{"ticket_id":"TCK-5158","created_at":"2026-03-07T10:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_import runbook. Cause candidate: Dedupe rule used name-only matching."}

@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5120","created_at":"2026-04-10T11:15:00Z","author_role":"customer_admin","internal":false,"body":"YieldWise reported interview stage missing scorecard template during a recruiting workflow."}
-{"ticket_id":"TCK-5120","created_at":"2026-04-10T11:35:00Z","author_role":"support_engineer","internal":true,"body":"Check scorecard_permissions runbook. Cause candidate: Stage had no active scorecard template."}

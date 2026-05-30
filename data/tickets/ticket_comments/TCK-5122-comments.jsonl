@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5122","created_at":"2026-01-16T13:15:00Z","author_role":"customer_admin","internal":false,"body":"BlueWave Health reported confidential scorecard field visible to wrong role during a recruiting workflow."}
-{"ticket_id":"TCK-5122","created_at":"2026-01-16T13:35:00Z","author_role":"support_engineer","internal":true,"body":"Check scorecard_permissions runbook. Cause candidate: Role inherited a restricted field group."}

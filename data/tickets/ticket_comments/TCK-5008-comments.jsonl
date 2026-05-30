@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5008","created_at":"2026-04-25T16:15:00Z","author_role":"customer_admin","internal":false,"body":"Granite Labs reported interview invitation email not delivered during a recruiting workflow."}
-{"ticket_id":"TCK-5008","created_at":"2026-04-25T16:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Recipient domain throttled transactional mail."}

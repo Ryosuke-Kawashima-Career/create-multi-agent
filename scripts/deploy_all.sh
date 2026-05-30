@@ -3,7 +3,6 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-STATE_FILE="${SCRIPT_DIR}/.state"
 
 cd "${REPO_ROOT}"
 
@@ -25,24 +24,6 @@ load_env_defaults() {
 if [[ -f "${REPO_ROOT}/.env" ]]; then
   load_env_defaults "${REPO_ROOT}/.env"
 fi
-if [[ -f "${STATE_FILE}" ]]; then
-  # shellcheck source=/dev/null
-  . "${STATE_FILE}"
-fi
-
-sanitize_id() {
-  printf "%s" "$1" | sed -E 's/[^A-Za-z0-9_-]+/_/g; s/^_+//; s/_+$//'
-}
-
-if [[ -z "${HIRENEST_PARTICIPANT_ID:-}" ]]; then
-  read -r -p "connpass ID: " raw_id
-  HIRENEST_PARTICIPANT_ID="$(sanitize_id "${raw_id}")"
-  if [[ -z "${HIRENEST_PARTICIPANT_ID}" ]]; then
-    echo "connpass ID is required" >&2
-    exit 2
-  fi
-  printf "HIRENEST_PARTICIPANT_ID=%s\n" "${HIRENEST_PARTICIPANT_ID}" > "${STATE_FILE}"
-fi
 
 if [[ -z "${GOOGLE_CLOUD_PROJECT:-}" ]]; then
   echo "GOOGLE_CLOUD_PROJECT is required" >&2
@@ -54,14 +35,10 @@ UV_BIN="${UV_BIN:-uv}"
 LOG_DIR="${REPO_ROOT}/.agent-runtime-temp"
 DEPLOY_WORK_DIR="${LOG_DIR}/deploy-work"
 REQ_FILE="${LOG_DIR}/requirements.txt"
-TRACE_TO_CLOUD="${TRACE_TO_CLOUD:-${HIRENEST_TRACE_TO_CLOUD:-false}}"
 A2A_ENV_NAMES=(
-  TICKET_HISTORY_A2A_URL
-  KNOWLEDGE_BASE_A2A_URL
-  ACCOUNT_CONTEXT_A2A_URL
-  INCIDENT_STATUS_A2A_URL
-  ESCALATION_POLICY_A2A_URL
-  DIAGNOSTICS_A2A_URL
+  COMFORT_A2A_URL
+  RISK_A2A_URL
+  EXPERIENCE_A2A_URL
 )
 
 # --- ANSI styling ---------------------------------------------------------
@@ -103,13 +80,6 @@ ok()    { printf "%s[ ok ]%s %s\n"  "${FG_GREEN}${BOLD}"  "${RESET}" "$*"; }
 warn()  { printf "%s[warn]%s %s\n"  "${FG_YELLOW}${BOLD}" "${RESET}" "$*"; }
 err()   { printf "%s[fail]%s %s\n"  "${FG_RED}${BOLD}"    "${RESET}" "$*" >&2; }
 
-is_truthy() {
-  case "${1:-}" in
-    1|true|TRUE|yes|YES|on|ON) return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
 validate_coordinator_a2a_env() {
   local missing=()
   local env_name
@@ -141,13 +111,12 @@ runtime_a2a_card_url() {
 }
 
 append_specialist_a2a_card_urls() {
-  local entry name _module _description env_name display_name agent_slug engine_id_file engine_id card_url
+  local entry name _module _description env_name agent_slug engine_id_file engine_id card_url
 
   info "Building specialist Agent Runtime A2A card URLs..."
   for entry in "${SPECIALIST_AGENTS[@]}"; do
     IFS='|' read -r name _module _description env_name <<< "${entry}"
-    display_name="[${HIRENEST_PARTICIPANT_ID}] ${name}"
-    agent_slug="$(slugify "${display_name}")"
+    agent_slug="$(slugify "${name}")"
     engine_id_file="${LOG_DIR}/${agent_slug}.engine_id"
     if [[ ! -s "${engine_id_file}" ]]; then
       err "Missing Agent Runtime resource ID for ${name}; expected ${engine_id_file}"
@@ -161,13 +130,12 @@ append_specialist_a2a_card_urls() {
 }
 
 mkdir -p "${LOG_DIR}" "${DEPLOY_WORK_DIR}"
-rm -rf "${DEPLOY_WORK_DIR}"/source_* "${DEPLOY_WORK_DIR}"/hirenest_agent_runtime_*
+rm -rf "${DEPLOY_WORK_DIR}"/source_* "${DEPLOY_WORK_DIR}"/travel_agent_runtime_*
 
 EXISTING_ENGINES_FILE="${LOG_DIR}/existing_engines.tsv"
 
-banner "HireNest Agent Runtime — Parallel Deploy"
+banner "Travel Planning Agent Runtime — Parallel Deploy"
 info "Project: ${BOLD}${GOOGLE_CLOUD_PROJECT}${RESET}   Region: ${BOLD}${REGION}${RESET}"
-info "Participant: ${BOLD}[${HIRENEST_PARTICIPANT_ID}]${RESET}"
 info "Logs:    ${LOG_DIR}"
 
 info "Fetching existing Agent Runtime resources (to update in place rather than duplicate)..."
@@ -232,16 +200,13 @@ info "Exporting requirements..."
 # in spec.deployment_spec.env is rejected.
 DEPLOY_ENV_FILE="${LOG_DIR}/deploy.env"
 if [[ -f "${REPO_ROOT}/.env" ]]; then
-  grep -v -E '^[[:space:]]*(GOOGLE_API_KEY|GOOGLE_GENAI_USE_VERTEXAI|GOOGLE_CLOUD_PROJECT|GOOGLE_CLOUD_LOCATION|GOOGLE_CLOUD_REGION|TRACE_TO_CLOUD|HIRENEST_TRACE_TO_CLOUD|[A-Z_]+_A2A_URL)[[:space:]]*=' \
+  grep -v -E '^[[:space:]]*(GOOGLE_API_KEY|GOOGLE_GENAI_USE_VERTEXAI|GOOGLE_CLOUD_PROJECT|GOOGLE_CLOUD_LOCATION|GOOGLE_CLOUD_REGION|[A-Z_]+_A2A_URL)[[:space:]]*=' \
     "${REPO_ROOT}/.env" > "${DEPLOY_ENV_FILE}" || true
 else
   : > "${DEPLOY_ENV_FILE}"
 fi
 echo "GOOGLE_GENAI_USE_VERTEXAI=true" >> "${DEPLOY_ENV_FILE}"
-echo "HIRENEST_A2A_USE_ADC_AUTH=true" >> "${DEPLOY_ENV_FILE}"
-if is_truthy "${TRACE_TO_CLOUD}"; then
-  echo "HIRENEST_TRACE_TO_CLOUD=true" >> "${DEPLOY_ENV_FILE}"
-fi
+echo "TRAVEL_AGENT_A2A_USE_ADC_AUTH=true" >> "${DEPLOY_ENV_FILE}"
 
 slugify() {
   printf "%s" "$1" \
@@ -255,11 +220,7 @@ prepare_deploy_source() {
   local deploy_kind="$3"
   local description="$4"
   local description_literal
-  local trace_literal="False"
   description_literal="$(python3 -c 'import json, sys; print(json.dumps(sys.argv[1]))' "${description}")"
-  if is_truthy "${TRACE_TO_CLOUD}"; then
-    trace_literal="True"
-  fi
 
   rm -rf "${source_dir}"
   mkdir -p "${source_dir}"
@@ -267,11 +228,15 @@ prepare_deploy_source() {
     --exclude ".git/" \
     --exclude ".venv/" \
     --exclude "__pycache__/" \
-    --exclude ".pytest_cache/" \
     --exclude ".ruff_cache/" \
     --exclude ".env" \
     --exclude ".agent-runtime-temp/" \
     --exclude ".agent-engine-temp/" \
+    --exclude ".adk/" \
+    --exclude ".kiri/" \
+    --exclude "*.egg-info/" \
+    --exclude "build/" \
+    --exclude "dist/" \
     "${REPO_ROOT}/" "${source_dir}/"
 
   cp "${REQ_FILE}" "${source_dir}/requirements.txt"
@@ -281,7 +246,7 @@ prepare_deploy_source() {
 import os, sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-for _p in (_HERE, os.path.join(_HERE, "src")):
+for _p in (_HERE,):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -295,7 +260,7 @@ PY
 import os, sys
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-for _p in (_HERE, os.path.join(_HERE, "src")):
+for _p in (_HERE,):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -315,8 +280,7 @@ vertexai.init(
 )
 
 adk_app = AdkApp(
-    app=App(name=root_agent.name or "hirenest_agent", root_agent=root_agent),
-    enable_tracing=${trace_literal},
+    app=App(name=root_agent.name or "travel_planning_agent", root_agent=root_agent),
 )
 PY
   fi
@@ -387,10 +351,8 @@ if deploy_kind == "a2a":
     source_packages = [
         "agent.py",
         "agents",
-        "data",
         "pyproject.toml",
         "requirements.txt",
-        "src",
     ]
     class_methods = []
     for mode, method_names in root_agent.register_operations().items():
@@ -422,10 +384,8 @@ else:
         "agent.py",
         "agent_runtime_app.py",
         "agents",
-        "data",
         "pyproject.toml",
         "requirements.txt",
-        "src",
     ]
     class_methods = _AGENT_ENGINE_CLASS_METHODS
     agent_framework = "google-adk"
@@ -470,15 +430,15 @@ deploy_agent() {
   local color="$4"
   local deploy_kind="${5:-adk}"
 
-  local display_name="[${HIRENEST_PARTICIPANT_ID}] ${name}"
   local agent_slug
-  agent_slug="$(slugify "${display_name}")"
+  agent_slug="$(slugify "${name}")"
   local source_dir="${DEPLOY_WORK_DIR}/source_${agent_slug}"
   local log_file="${LOG_DIR}/${agent_slug}.deploy.log"
   local status_file="${LOG_DIR}/${agent_slug}.status"
   local engine_id_file="${LOG_DIR}/${agent_slug}.engine_id"
   local prefix="${color}${BOLD}[${name}]${RESET}"
 
+  local display_name="Travel Planning ${name}"
   local existing_id
   existing_id="$(lookup_engine_id "${display_name}")"
   local action_label
@@ -532,15 +492,12 @@ deploy_agent() {
 
 # Specialist agents to deploy, one per line: NAME|MODULE|DESCRIPTION|A2A_URL_ENV_NAME
 SPECIALIST_AGENTS=(
-  "Ticket History Agent|agents.ticket_history.agent|Searches historical HireNest support tickets over A2A.|TICKET_HISTORY_A2A_URL"
-  "Knowledge Base Agent|agents.knowledge_base.agent|Searches HireNest FAQ, troubleshooting, runbooks, policies, and known issues over A2A.|KNOWLEDGE_BASE_A2A_URL"
-  "Account Context Agent|agents.account_context.agent|Looks up customer account, contract, entitlement, SLA, contact, and health context over A2A.|ACCOUNT_CONTEXT_A2A_URL"
-  "Incident Status Agent|agents.incident_status.agent|Correlates support cases with active and historical incidents over A2A.|INCIDENT_STATUS_A2A_URL"
-  "Escalation Policy Agent|agents.escalation_policy.agent|Applies HireNest severity, SLA, escalation, and customer-communication policies over A2A.|ESCALATION_POLICY_A2A_URL"
-  "Diagnostics Agent|agents.diagnostics.agent|Recommends diagnostic checks, evidence gaps, and troubleshooting probes over A2A.|DIAGNOSTICS_A2A_URL"
+  "Comfort Agent|agents.comfort.agent|Evaluates travel candidates for movement load, rest, lodging comfort, and fatigue over A2A.|COMFORT_A2A_URL"
+  "Risk Agent|agents.risk.agent|Evaluates travel candidates for closures, crowding, weather, booking difficulty, delays, and uncertainty over A2A.|RISK_A2A_URL"
+  "Experience Agent|agents.experience.agent|Evaluates travel candidates for memorability, novelty, and preference fit over A2A.|EXPERIENCE_A2A_URL"
 )
 COORDINATOR_AGENT=(
-  "Support Coordinator Agent|agents.coordinator.agent|Coordinates specialist A2A agents and produces support case resolution packages."
+  "Travel Coordinator Agent|agents.coordinator.agent|Coordinates dynamic travel research, multi-agent evaluation, user selection, itinerary planning, and bookmark image generation."
 )
 AGENTS=("${SPECIALIST_AGENTS[@]}" "${COORDINATOR_AGENT[@]}")
 
@@ -553,7 +510,7 @@ for entry in "${SPECIALIST_AGENTS[@]}"; do
   IFS='|' read -r name module description _env_name <<< "${entry}"
   color="${AGENT_COLORS[$(( i % ${#AGENT_COLORS[@]} ))]}"
   # Clear any stale status from a previous run.
-  rm -f "${LOG_DIR}/$(slugify "[${HIRENEST_PARTICIPANT_ID}] ${name}").status"
+  rm -f "${LOG_DIR}/$(slugify "${name}").status"
   deploy_agent "${name}" "${module}" "${description}" "${color}" "a2a" &
   pids+=($!)
   names+=("${name}")
@@ -572,7 +529,7 @@ done
 banner "Specialist Deployment Summary"
 for entry in "${SPECIALIST_AGENTS[@]}"; do
   IFS='|' read -r name _ _ _ <<< "${entry}"
-  status_file="${LOG_DIR}/$(slugify "[${HIRENEST_PARTICIPANT_ID}] ${name}").status"
+  status_file="${LOG_DIR}/$(slugify "${name}").status"
   if [[ -f "${status_file}" ]] && [[ "$(cat "${status_file}")" == "ok" ]]; then
     printf "  %s%sOK  %s  %s\n" "${BOLD}" "${FG_GREEN}" "${RESET}" "${name}"
   else
@@ -595,9 +552,9 @@ fi
 
 banner "Launching coordinator deployment"
 IFS='|' read -r name module description <<< "${COORDINATOR_AGENT[0]}"
-rm -f "${LOG_DIR}/$(slugify "[${HIRENEST_PARTICIPANT_ID}] ${name}").status"
+rm -f "${LOG_DIR}/$(slugify "${name}").status"
 if ! deploy_agent "${name}" "${module}" "${description}" "${AGENT_COLORS[6]}"; then
-  err "Coordinator deployment failed; inspect ${LOG_DIR}/$(slugify "[${HIRENEST_PARTICIPANT_ID}] ${name}").deploy.log"
+  err "Coordinator deployment failed; inspect ${LOG_DIR}/$(slugify "${name}").deploy.log"
   exit 1
 fi
 

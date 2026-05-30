@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5048","created_at":"2026-05-01T17:15:00Z","author_role":"customer_admin","internal":false,"body":"Evergreen Retail reported interviewers show no free slots during a recruiting workflow."}
-{"ticket_id":"TCK-5048","created_at":"2026-05-01T17:35:00Z","author_role":"support_engineer","internal":true,"body":"Check calendar_integration runbook. Cause candidate: Interviewer calendar sharing was private."}

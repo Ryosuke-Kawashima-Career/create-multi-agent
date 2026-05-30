@@ -5,12 +5,9 @@ import json
 from pathlib import Path
 
 ENV_NAMES = {
-    "ticket_history": "TICKET_HISTORY_A2A_URL",
-    "knowledge_base": "KNOWLEDGE_BASE_A2A_URL",
-    "account_context": "ACCOUNT_CONTEXT_A2A_URL",
-    "incident_status": "INCIDENT_STATUS_A2A_URL",
-    "escalation_policy": "ESCALATION_POLICY_A2A_URL",
-    "diagnostics": "DIAGNOSTICS_A2A_URL",
+    "comfort": "COMFORT_A2A_URL",
+    "risk": "RISK_A2A_URL",
+    "experience": "EXPERIENCE_A2A_URL",
 }
 
 

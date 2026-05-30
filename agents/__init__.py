@@ -1,1 +1,1 @@
-"""ADK agent entrypoints for the HireNest support escalation example."""
+"""ADK agent entrypoints for the dynamic travel planning example."""

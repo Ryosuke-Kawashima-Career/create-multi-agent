@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5046","created_at":"2026-03-22T15:15:00Z","author_role":"customer_admin","internal":false,"body":"ClearPath Logistics reported oauth reconnect did not restore free/busy during a recruiting workflow."}
-{"ticket_id":"TCK-5046","created_at":"2026-03-22T15:35:00Z","author_role":"support_engineer","internal":true,"body":"Check calendar_integration runbook. Cause candidate: Resource calendar was outside the synced domain."}

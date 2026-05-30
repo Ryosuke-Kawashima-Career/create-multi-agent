@@ -1,2 +1,0 @@
-{"ticket_id":"TCK-5003","created_at":"2026-04-10T11:15:00Z","author_role":"customer_admin","internal":false,"body":"BlueWave Health reported bulk resend skipped candidates during a recruiting workflow."}
-{"ticket_id":"TCK-5003","created_at":"2026-04-10T11:35:00Z","author_role":"support_engineer","internal":true,"body":"Check candidate_communication runbook. Cause candidate: Sender mailbox SPF alignment failed."}
