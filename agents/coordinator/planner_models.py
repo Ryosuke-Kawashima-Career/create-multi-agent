@@ -26,3 +26,17 @@ class SelectedOptionContext(BaseModel):
     evaluations: list[EvaluationReport]
     recommendation: RankedOption | None
     coordinator_notes: str
+class CoordinatorRecommendation(BaseModel):
+    ranked_options: list[RankedOption] = Field(max_length=3)
+    comparison_summary: str
+    conflict_resolution: str
+    user_message: str
+
+
+class SelectedOptionContext(BaseModel):
+    travel_request: TravelRequest
+    selected_option: TravelOption
+    research_report: ResearchReport
+    evaluations: list[EvaluationReport]
+    recommendation: RankedOption | None
+    coordinator_notes: str

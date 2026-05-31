@@ -93,9 +93,14 @@ candidate_workflow = Workflow(
         (
             route_user_selection,
             {
-                ROUTE_SELECTED: request_user_selection,
+                ROUTE_SELECTED: build_planner_input,
                 ROUTE_REPLAN: build_replan_input,
             },
+        ),
+        (
+            build_planner_input,
+            planner_agent,
+            store_itinerary_markdown,
         ),
         (build_replan_input, clarify_agent),
     ],
@@ -103,8 +108,11 @@ candidate_workflow = Workflow(
 from agents.coordinator.planner import (
     ROUTE_REPLAN,
     ROUTE_SELECTED,
+    build_planner_input,
     build_replan_input,
+    planner_agent,
     request_user_selection,
     route_user_selection,
+    store_itinerary_markdown,
     store_recommendation,
 )
