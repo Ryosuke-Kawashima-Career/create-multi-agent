@@ -31,6 +31,7 @@ def ensure_repo_path() -> None:
 
 ensure_repo_path()
 load_dotenv(REPO_ROOT / ".env")
+os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "false"
 
 
 def env_bool(name: str) -> bool:

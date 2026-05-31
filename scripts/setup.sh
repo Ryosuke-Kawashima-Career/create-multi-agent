@@ -15,7 +15,7 @@ existing_id=""
 if [[ -f "${STATE_FILE}" ]]; then
   # shellcheck source=/dev/null
   . "${STATE_FILE}"
-  existing_id="${HIRENEST_PARTICIPANT_ID:-}"
+  existing_id="${TRAVEL_AGENT_PARTICIPANT_ID:-}"
 fi
 
 if [[ -n "${existing_id}" ]]; then
@@ -43,31 +43,20 @@ if [[ -z "${project_id}" || "${project_id}" == "(unset)" ]]; then
   exit 2
 fi
 
-printf "HIRENEST_PARTICIPANT_ID=%s\n" "${participant_id}" > "${STATE_FILE}"
+printf "TRAVEL_AGENT_PARTICIPANT_ID=%s\n" "${participant_id}" > "${STATE_FILE}"
 
 cat > .env <<EOF
 ADK_MODEL=gemini-2.5-flash
-HIRENEST_PARTICIPANT_ID=${participant_id}
+TRAVEL_AGENT_PARTICIPANT_ID=${participant_id}
 
-TICKET_HISTORY_A2A_URL=http://localhost:8101
-KNOWLEDGE_BASE_A2A_URL=http://localhost:8102
-ACCOUNT_CONTEXT_A2A_URL=http://localhost:8103
-INCIDENT_STATUS_A2A_URL=http://localhost:8104
-ESCALATION_POLICY_A2A_URL=http://localhost:8105
-DIAGNOSTICS_A2A_URL=http://localhost:8107
+COMFORT_A2A_URL=http://localhost:8101
+RISK_A2A_URL=http://localhost:8102
+EXPERIENCE_A2A_URL=http://localhost:8103
 
 GOOGLE_API_KEY=
-GOOGLE_GENAI_USE_VERTEXAI=true
 GOOGLE_CLOUD_PROJECT=${project_id}
 GOOGLE_CLOUD_LOCATION=us-central1
-HIRENEST_TRACE_TO_CLOUD=false
-
-HIRENEST_AGENT_SEARCH_SERVING_CONFIG=
-
-HIRENEST_DISCORD_DRY_RUN=false
-HIRENEST_DISCORD_WEBHOOK_URL=
-
-HIRENEST_DATA_DIR=
+TRAVEL_AGENT_TRACE_TO_CLOUD=false
 EOF
 
 if ! command -v uv >/dev/null 2>&1; then

@@ -194,18 +194,15 @@ info "Exporting requirements..."
   --no-emit-project \
   --output-file "${REQ_FILE}"
 
-# Build a deploy-only env file: drop AI-Studio API key and force Vertex mode so
-# the runtime uses its service account ADC (Vertex SessionService rejects API keys).
-# Agent Runtime owns GOOGLE_CLOUD_* deployment env vars; setting them explicitly
-# in spec.deployment_spec.env is rejected.
+# Build a deploy-only env file. Agent Runtime owns GOOGLE_CLOUD_* deployment
+# env vars; setting them explicitly in spec.deployment_spec.env is rejected.
 DEPLOY_ENV_FILE="${LOG_DIR}/deploy.env"
 if [[ -f "${REPO_ROOT}/.env" ]]; then
-  grep -v -E '^[[:space:]]*(GOOGLE_API_KEY|GOOGLE_GENAI_USE_VERTEXAI|GOOGLE_CLOUD_PROJECT|GOOGLE_CLOUD_LOCATION|GOOGLE_CLOUD_REGION|[A-Z_]+_A2A_URL)[[:space:]]*=' \
+  grep -v -E '^[[:space:]]*(GOOGLE_[A-Z_]*|[A-Z_]+_A2A_URL)[[:space:]]*=' \
     "${REPO_ROOT}/.env" > "${DEPLOY_ENV_FILE}" || true
 else
   : > "${DEPLOY_ENV_FILE}"
 fi
-echo "GOOGLE_GENAI_USE_VERTEXAI=true" >> "${DEPLOY_ENV_FILE}"
 echo "TRAVEL_AGENT_A2A_USE_ADC_AUTH=true" >> "${DEPLOY_ENV_FILE}"
 
 slugify() {

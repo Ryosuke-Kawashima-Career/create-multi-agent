@@ -38,11 +38,6 @@ Required environment variables:
 ```bash
 # Google AI Studio
 GOOGLE_API_KEY=...
-
-# or Vertex AI / Agent Platform
-GOOGLE_GENAI_USE_VERTEXAI=true
-GOOGLE_CLOUD_PROJECT=...
-GOOGLE_CLOUD_LOCATION=us-central1
 ```
 
 Optional environment variables:
@@ -97,7 +92,6 @@ their Agent Runtime A2A card URLs injected:
 ```bash
 export GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
 export GOOGLE_CLOUD_LOCATION=us-central1
-export GOOGLE_GENAI_USE_VERTEXAI=true
 make deploy-all
 ```
 
