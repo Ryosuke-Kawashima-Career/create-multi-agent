@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from google.adk import Workflow
 from google.adk.workflow import DEFAULT_ROUTE
-
+from agents.coordinator.illustrator import illustrator_agent, illustrator_prompt_agent
 from agents._common import to_a2a_app
 from agents.coordinator.clarify import (
     ROUTE_CLARIFY,
@@ -101,6 +101,8 @@ candidate_workflow = Workflow(
             build_planner_input,
             planner_agent,
             store_itinerary_markdown,
+            illustrator_prompt_agent,
+            illustrator_agent,
         ),
         (build_replan_input, clarify_agent),
     ],
