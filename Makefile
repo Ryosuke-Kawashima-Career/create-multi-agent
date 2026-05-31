@@ -38,7 +38,7 @@ deploy-all:
 	./scripts/deploy_all.sh
 
 web:
-	PYTHONPATH=. $(UV_RUN) adk web agents --port 8000
+	PYTHONPATH=. $(UV_RUN) adk web agents --port 8080
 
 clean:
 	rm -rf .venv .ruff_cache .agent-runtime-temp .agent-engine-temp build dist *.egg-info

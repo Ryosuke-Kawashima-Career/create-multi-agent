@@ -64,7 +64,7 @@ make run-coordinator
 make web
 ```
 
-ADK Web listens on `http://localhost:8000`.
+ADK Web listens on `http://localhost:8080`.
 
 AG-UI clients can connect to the coordinator through a separate streaming endpoint:
 

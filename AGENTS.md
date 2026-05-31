@@ -15,7 +15,7 @@ Use `uv` through the Makefile; dependencies are pinned in `pyproject.toml` and `
 - `make run-specialists`: start specialist A2A services on ports `8101`-`8105` and `8107`.
 - `make run-coordinator`: start the coordinator service on port `8100`.
 - `make deploy-all`: run `scripts/deploy_all.sh`.
-- `make web`: start ADK Web for the `agents/` directory on port `8000`.
+- `make web`: start ADK Web for the `agents/` directory on port `8080`.
 
 ## Coding Style & Naming Conventions
 
