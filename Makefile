@@ -38,7 +38,7 @@ deploy-all:
 	./scripts/deploy_all.sh
 
 web:
-	PYTHONPATH=. $(UV_RUN) adk web agents --port 8080
+	PYTHONPATH=. $(UV_RUN) adk web agents --host 0.0.0.0 --port 8080 --allow_origins 'regex:https://.*\.cloudshell\.dev'
 
 clean:
 	rm -rf .venv .ruff_cache .agent-runtime-temp .agent-engine-temp build dist *.egg-info
