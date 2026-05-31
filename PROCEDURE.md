@@ -32,13 +32,13 @@ Coordinator Workflow (port 8100)
 ## Step 0. 環境セットアップ
 
 1. Cloud Shell またはローカルで本リポジトリのルートに移動します。
-2. setup スクリプトを実行し、connpass ID と Google Cloud Project ID を入力します。
+2. setup スクリプトを実行し、connpass ID を入力します。
 
    ```bash
    ./scripts/setup.sh
    ```
 
-   `.env` が生成され、`uv sync --extra dev` で依存関係が入ります。
+   `.env` が生成され、Google Cloud Project ID には固定値 `create-multi-agent` が設定されます。`uv sync --extra dev` で依存関係が入ります。
 3. 認証を確認します。
 
    ```bash

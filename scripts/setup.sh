@@ -4,6 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 STATE_FILE="${SCRIPT_DIR}/.state"
+PROJECT_ID="create-multi-agent"
 
 cd "${REPO_ROOT}"
 
@@ -31,18 +32,6 @@ if [[ -z "${participant_id}" ]]; then
   exit 2
 fi
 
-project_id="${GOOGLE_CLOUD_PROJECT:-}"
-if [[ -z "${project_id}" ]] && command -v gcloud >/dev/null 2>&1; then
-  project_id="$(gcloud config get-value project 2>/dev/null || true)"
-fi
-if [[ -z "${project_id}" || "${project_id}" == "(unset)" ]]; then
-  read -r -p "Google Cloud project ID: " project_id
-fi
-if [[ -z "${project_id}" || "${project_id}" == "(unset)" ]]; then
-  echo "Google Cloud project ID is required" >&2
-  exit 2
-fi
-
 printf "TRAVEL_AGENT_PARTICIPANT_ID=%s\n" "${participant_id}" > "${STATE_FILE}"
 
 cat > .env <<EOF
@@ -54,7 +43,7 @@ RISK_A2A_URL=http://localhost:8102
 EXPERIENCE_A2A_URL=http://localhost:8103
 
 GOOGLE_API_KEY=
-GOOGLE_CLOUD_PROJECT=${project_id}
+GOOGLE_CLOUD_PROJECT=${PROJECT_ID}
 GOOGLE_CLOUD_LOCATION=us-central1
 TRAVEL_AGENT_TRACE_TO_CLOUD=false
 EOF

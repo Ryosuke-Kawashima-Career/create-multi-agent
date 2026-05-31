@@ -90,7 +90,7 @@ Deploy the three A2A evaluation specialists first, then the coordinator with
 their Agent Runtime A2A card URLs injected:
 
 ```bash
-export GOOGLE_CLOUD_PROJECT=YOUR_PROJECT_ID
+export GOOGLE_CLOUD_PROJECT=create-multi-agent
 export GOOGLE_CLOUD_LOCATION=us-central1
 make deploy-all
 ```
