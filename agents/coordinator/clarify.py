@@ -91,3 +91,18 @@ def build_reclarify_input(ctx: Context, node_input: Any) -> str:
             "追加回答を反映して TravelRequest を更新してください。",
         ]
     )
+# --- Helpers ----------------------------------------------------------------
+
+def _event_text(event: Event) -> str:
+    if not event.content or not event.content.parts:
+        return ""
+    return "".join(part.text for part in event.content.parts if part.text).strip()
+
+
+def _latest_user_text(ctx: Context) -> str:
+    for event in reversed(ctx.session.events):
+        if event.author == "user":
+            event_text = _event_text(event)
+            if event_text:
+                return event_text
+    return ""

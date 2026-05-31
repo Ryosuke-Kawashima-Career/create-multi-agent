@@ -98,3 +98,48 @@ def collect_research_reports(ctx: Context, node_input: Any) -> dict[str, dict[st
             reports[data["option_id"]] = data
     ctx.state[STATE_RESEARCH_REPORTS] = reports
     return reports
+# --- Helpers ----------------------------------------------------------------
+
+def build_research_input(request: Any, option: Any) -> str:
+    return "\n\n".join(
+        [
+            "TravelRequest:",
+            text(request),
+            "TravelOption:",
+            text(option),
+            "Google Search Grounding / google_search を使って、最新のアクセス、費用感、"
+            "宿泊エリア、観光地、食事、リスク、季節性を調査してください。"
+            " option_id は必ず維持してください。",
+        ]
+    )
+
+
+def build_research_report_input(request: Any, option: Any, research_memo: Any) -> str:
+    return "\n\n".join(
+        [
+            "TravelRequest:",
+            text(request),
+            "TravelOption:",
+            text(option),
+            "Research memo produced by research_agent with google_search:",
+            text(research_memo),
+            "上記だけを根拠に ResearchReport を返してください。",
+        ]
+    )
+
+
+def collect_research_reports(ctx: Context, node_input: Any) -> dict[str, dict[str, Any]]:
+    reports: dict[str, dict[str, Any]] = {}
+    if isinstance(node_input, dict):
+        values = node_input.values()
+    elif isinstance(node_input, list):
+        values = node_input
+    else:
+        values = [node_input]
+    for value in values:
+        data = dump(value)
+        is_report = isinstance(data, dict) and data.get("option_id")
+        if is_report:
+            reports[data["option_id"]] = data
+    ctx.state[STATE_RESEARCH_REPORTS] = reports
+    return reports

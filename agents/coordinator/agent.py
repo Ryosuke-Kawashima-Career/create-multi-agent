@@ -57,6 +57,9 @@ candidate_workflow = Workflow(
             strategist_agent,
             store_travel_options,
             travel_research_workflow,
+            build_evaluation_input,
+            evaluation_agent,
+            store_recommendation,
         ),
     ],
 )
@@ -77,13 +80,31 @@ from agents.coordinator.candidates import (
 
 candidate_workflow = Workflow(
     name="travel_candidate_workflow",
-    description="Creates candidates and researches them.",
+    description="Creates candidates, researches them, evaluates them, and requests user selection.",
     edges=[
         (
             "START",
             strategist_agent,
             store_travel_options,
             travel_research_workflow,
+            request_user_selection,
+            route_user_selection,
         ),
+        (
+            route_user_selection,
+            {
+                ROUTE_SELECTED: request_user_selection,
+                ROUTE_REPLAN: build_replan_input,
+            },
+        ),
+        (build_replan_input, clarify_agent),
     ],
+)
+from agents.coordinator.planner import (
+    ROUTE_REPLAN,
+    ROUTE_SELECTED,
+    build_replan_input,
+    request_user_selection,
+    route_user_selection,
+    store_recommendation,
 )
